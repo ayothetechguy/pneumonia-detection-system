@@ -687,6 +687,12 @@ st.markdown("""
     }
 
     /* Make alert/info text BLACK for readability */
+
+    /* Make main content headers BLACK for readability */
+    .main h2, .main h3, .main h4 {
+        color: #0d47a1 !important;
+        text-shadow: none !important;
+    }
     .stAlert p, .stAlert div, .stAlert span {
         color: #000000 !important;
     }
