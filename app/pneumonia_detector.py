@@ -17,6 +17,7 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 import io
+from download_model import download_model
 from reportlab.lib.pagesizes import letter, A4
 from reportlab.lib import colors
 from reportlab.lib.units import inch
@@ -823,11 +824,18 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════════════════
-# MODEL LOADING
+# MODEL LOADING - UPDATED FOR GOOGLE DRIVE
 # ═══════════════════════════════════════════════════════════════
 
 @st.cache_resource
 def load_model():
+    """Load model with Google Drive download support"""
+    
+    # Download model from Google Drive if not present
+    if not download_model():
+        st.error("⚠️ Failed to download model from cloud storage. Please refresh the page.")
+        return None, torch.device('cpu')
+    
     device = torch.device('cpu')
     model = models.resnet18(weights=None)
     num_features = model.fc.in_features
@@ -838,8 +846,10 @@ def load_model():
         nn.Dropout(0.3),
         nn.Linear(128, 2)
     )
+    
     try:
-        model_path = '/Users/ayoolumimelehon/Desktop/chest-xray-pneumonia/models/best_model.pth'
+        # Use relative path that works on Streamlit Cloud
+        model_path = 'models/best_model.pth'
         model.load_state_dict(torch.load(model_path, map_location=device))
         model.eval()
         return model, device
