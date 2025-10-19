@@ -675,6 +675,7 @@ st.markdown("""
     }
     
     /* Alert boxes */
+    /* Alert boxes */
     .stAlert {
         font-size: 1.1rem !important;
         padding: 1.5rem !important;
@@ -683,6 +684,11 @@ st.markdown("""
         backdrop-filter: blur(15px);
         box-shadow: 0 12px 35px rgba(0,0,0,0.12);
         font-weight: 600 !important;
+    }
+
+    /* Make alert/info text BLACK for readability */
+    .stAlert p, .stAlert div, .stAlert span {
+        color: #000000 !important;
     }
     
     /* Progress bar */
