@@ -558,8 +558,29 @@ st.markdown("""
     
     /* Headers */
     h1, h2, h3, h4, h5, h6 {
-        color: #ffffff !important;
         font-weight: 800 !important;
+    }
+    
+    /* Keep main page title white */
+    .world-class-header h1,
+    .world-class-header p,
+    .world-class-footer h3,
+    .world-class-footer p {
+        color: #ffffff !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    /* Make content headers BLACK */
+    .main h2, .main h3, .main h4 {
+        color: #000000 !important;
+        text-shadow: none !important;
+    }
+    
+    /* Sidebar headers white */
+    section[data-testid="stSidebar"] h1,
+    section[data-testid="stSidebar"] h2,
+    section[data-testid="stSidebar"] h3 {
+        color: #ffffff !important;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
     
